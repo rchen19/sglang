@@ -205,6 +205,9 @@ def is_multimodal_model(model_architectures):
         or "LlavaQwenForCausalLM" in model_architectures
         or "LlavaMistralForCausalLM" in model_architectures
         or "LlavaVidForCausalLM" in model_architectures
+        or "MiniCPMV" in model_architectures
+        or "MiniCPMV2_6" in model_architectures
+        or "MiniCPMV2_5" in model_architectures
     ):
         return True
     else:
