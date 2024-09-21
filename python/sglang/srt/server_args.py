@@ -279,7 +279,7 @@ class ServerArgs:
                 "marlin",
                 "gptq_marlin",
                 "awq_marlin",
-                "squeezellm",
+                # "squeezellm",
                 "bitsandbytes",
             ],
             help="The quantization method.",
