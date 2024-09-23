@@ -42,8 +42,10 @@ from vllm.inputs import INPUT_REGISTRY, InputContext, LLMInputs
 # from vllm.model_executor.layers.linear import ReplicatedLinear
 # from vllm.model_executor.layers.logits_processor import LogitsProcessor
 # from vllm.model_executor.layers.quantization import QuantizationConfig
-from vllm.model_executor.layers.resampler import (Resampler2,
-                                                  get_2d_sincos_pos_embed)
+# from vllm.model_executor.layers.resampler import (Resampler2,
+#                                                   get_2d_sincos_pos_embed)
+# from vllm.model_executor.layers.resampler import get_2d_sincos_pos_embed
+from sglang.srt.layers.resampler import Resampler2, get_2d_sincos_pos_embed
 from vllm.model_executor.layers.sampler import Sampler, SamplerOutput
 from vllm.model_executor.layers.vocab_parallel_embedding import ParallelLMHead
 from vllm.model_executor.model_loader.utils import set_default_torch_dtype
