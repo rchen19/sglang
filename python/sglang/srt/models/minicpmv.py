@@ -434,6 +434,15 @@ class MiniCPMVBaseModel(nn.Module, SupportsMultiModal):
 
         return vlm_embedding, vision_hidden_states
 
+    def pad_input_ids(
+        self,
+        input_ids: List[int],
+        pad_value: List[int],
+        pixel_values: List,
+        image_sizes: List[List[int]],
+    ) -> Tuple[List[int], List[int]]:
+        return input_ids, []
+
     def _get_image_bounds(self, input_ids: torch.Tensor) -> torch.Tensor:
         tokenizer = cached_get_tokenizer(self.config._name_or_path,
                                          trust_remote_code=True)
