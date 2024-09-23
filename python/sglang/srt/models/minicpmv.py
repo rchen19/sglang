@@ -61,7 +61,7 @@ from vllm.multimodal.utils import cached_get_tokenizer
 from vllm.sequence import (VLLM_TOKEN_ID_ARRAY_TYPE, IntermediateTensors,
                            SequenceData)
 
-from vllm.model_executor.models.idefics2_vision_model import Idefics2VisionTransformer
+# from vllm.model_executor.models.idefics2_vision_model import Idefics2VisionTransformer
 
 
 # from sglang.srt.layers.activation import SiluAndMul
@@ -80,7 +80,7 @@ from sglang.srt.layers.quantization.base_config import QuantizationConfig
 # from sglang.srt.layers.torchao_utils import apply_torchao_config_
 # from sglang.srt.managers.schedule_batch import global_server_args_dict
 from sglang.srt.model_executor.forward_batch_info import InputMetadata, ForwardMode
-
+from sglang.srt.models.idefics2_vision_model import Idefics2VisionTransformer
 
 from sglang.srt.mm_utils import (
     get_anyres_image_grid_shape,
