@@ -761,6 +761,68 @@ class MiniCPMV2_5(MiniCPMVBaseModel):
             )
         return resampler
 
+    # def pad_input_ids(
+    #     self,
+    #     input_ids: List[int],
+    #     pad_value: List[int],
+    #     pixel_values: List,
+    #     image_sizes: List[List[int]],
+    # ):
+    #     # hardcode for spatial_unpad + anyres
+    #     image_aspect_ratio = "anyres" if len(image_sizes) == 1 else "pad"
+    #     offset_list = []
+    #     for image_s in image_sizes:
+    #         if len(image_sizes) > 16:
+    #             # 2x2 pooling with stride 2
+    #             new_image_feature_len = (
+    #                 math.ceil(self.image_size / self.patch_size / 2) ** 2
+    #             )
+    #         else:
+    #             new_image_feature_len = self.image_feature_len  # multiimage
+
+    #         height = width = self.num_patches_per_side
+    #         if "anyres" in image_aspect_ratio:
+    #             num_patch_width, num_patch_height = get_anyres_image_grid_shape(
+    #                 image_s,
+    #                 self.image_grid_pinpoints,
+    #                 self.vision_tower.config.image_size,
+    #             )
+    #             h = num_patch_height * height
+    #             w = num_patch_width * width
+    #             new_h, new_w = unpad_image_shape(h, w, image_s)
+
+    #             if "anyres_max" in self.config.image_aspect_ratio:
+    #                 matched_anyres_max_num_patches = re.match(
+    #                     r"anyres_max_(\d+)", self.config.image_aspect_ratio
+    #                 )
+    #                 if matched_anyres_max_num_patches:
+    #                     max_num_patches = int(matched_anyres_max_num_patches.group(1))
+    #                 # times = math.sqrt(h * w / (max_num_patches * unit**2))
+    #                 times = math.sqrt(
+    #                     new_h * new_w / (max_num_patches * self.image_feature_len)
+    #                 )
+    #                 if times > 1.1:
+    #                     new_h = int(new_h // times)
+    #                     new_w = int(new_w // times)
+    #             new_image_feature_len += new_h * (new_w + 1)
+
+    #         pad_ids = pad_value * (
+    #             (new_image_feature_len + len(pad_value)) // len(pad_value)
+    #         )
+    #         # print("calculated new_image_feature_len: ", new_image_feature_len)
+    #         try:
+    #             offset = input_ids.index(self.config.image_token_index)
+    #         except ValueError:
+    #             offset = 0
+    #         # old_len + pad_len - 1, because we need to remove image_token_id
+    #         input_ids = (
+    #             input_ids[:offset]
+    #             + pad_ids[:new_image_feature_len]
+    #             + input_ids[offset + 1 :]
+    #         )
+    #         offset_list.append(offset)
+    #     return input_ids, offset_list
+
     def get_vision_embedding(
         self,
         pixel_values: List[torch.Tensor],
@@ -946,4 +1008,4 @@ class MiniCPMV(MiniCPMVBaseModel):
         # return instance_class(config, multimodal_config, cache_config, quant_config)
 
 
-EntryClass = [MiniCPMV2_5, MiniCPMV2_6, MiniCPMV, MiniCPMV2_0]
+EntryClass = MiniCPMV#[MiniCPMV2_5, MiniCPMV2_6, MiniCPMV, MiniCPMV2_0]
